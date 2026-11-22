@@ -1,0 +1,82 @@
+/*******************************************************************************
+ * SCRIPT: sales_and_operational_measures.dax
+ * AUTHOR: Ahmed Rasmy (Data & BI Analyst)
+ * DESCRIPTION:
+ *   Production DAX measures authored in Excel Power Pivot for the
+ *   Sales & Commercial Performance Executive Dashboard.
+ *
+ * DATA MODEL ENTITIES:
+ *   - Fact Table: fOrders
+ *   - Dimension Tables: dCustomers, dProducts, dLocations, dCalendar
+ *******************************************************************************/
+
+-- =============================================================================
+-- 1. VOLUME & TRANSACTION METRICS
+-- =============================================================================
+
+// Calculates total distinct customer orders fulfilled
+Num Of Orders := 
+DISTINCTCOUNT(fOrders[Order_ID])
+
+// Total units sold across all lines
+Total Units Sold := 
+SUM(fOrders[Quantity])
+
+
+-- =============================================================================
+-- 2. REVENUE & FINANCIAL KPIS
+-- =============================================================================
+
+// Gross commercial revenue generated across orders
+Total Revenue := 
+SUM(fOrders[Revenue])
+
+// Average revenue captured per completed order
+Avg Customer Spend := 
+AVERAGEX(
+    fOrders, 
+    fOrders[Revenue]
+)
+
+// Revenue per unit sold
+Revenue Per Unit := 
+DIVIDE(
+    [Total Revenue], 
+    [Total Units Sold], 
+    0
+)
+
+
+-- =============================================================================
+-- 3. OPERATIONAL FULFILLMENT & LOGISTICS KPIS
+-- =============================================================================
+
+// Average delivery lead time in calendar days
+Average Delivery Days := 
+AVERAGEX(
+    fOrders, 
+    INT(fOrders[Delivery_Date] - fOrders[Order_Date])
+)
+
+// On-Time Delivery Flag Count (Delivered within target SLA <= 5 days)
+On_Time_Deliveries := 
+CALCULATE(
+    [Num Of Orders], 
+    fOrders[Delivery_Duration_Days] <= 5
+)
+
+
+-- =============================================================================
+-- 4. OCCASION & TEMPORAL CONCENTRATION
+-- =============================================================================
+
+// Peak Occasion Share of Total Revenue
+Occasion_Revenue_Pct := 
+DIVIDE(
+    [Total Revenue],
+    CALCULATE(
+        [Total Revenue], 
+        ALL(fOrders[Occasion])
+    ),
+    0
+)
