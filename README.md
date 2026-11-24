@@ -1,85 +1,82 @@
 # 📈 Commercial Revenue & Sales Performance Intelligence
 
 [![Microsoft Excel](https://img.shields.io/badge/Microsoft_Excel-Power_Pivot-217346?logo=microsoftexcel&logoColor=white)](https://www.microsoft.com/excel)
-[![DAX](https://img.shields.io/badge/DAX-Data_Analysis_Expressions-205493)](#2-tech-stack)
-[![Data Modeling](https://img.shields.io/badge/Data_Model-Star_Schema-blue)](#data-model-architecture-star-schema)
+[![DAX](https://img.shields.io/badge/DAX-Data_Analysis_Expressions-205493)](#solution)
+[![Star Schema](https://img.shields.io/badge/Data_Model-Star_Schema-blue)](#2-star-schema-data-architecture)
 [![Portfolio Showcase](https://img.shields.io/badge/Project_Showcase-Live_Portfolio-111827?logo=github&logoColor=white)](https://ahmedrasmyabdelrheem.github.io/#sales-project)
 
-An enterprise-grade commercial revenue analytics solution built in Microsoft Excel using Power Query, Power Pivot (Star Schema), and advanced DAX to evaluate sales velocity, order fulfillment lead times, and customer spending behavior across products, cities, and seasonal occasions.
+---
+
+## Project Overview
+An end-to-end commercial revenue analytics solution built in Microsoft Excel using Power Query, Power Pivot (Star Schema), and advanced DAX to evaluate sales velocity, order fulfillment lead times, and customer spending behavior across products, cities, and seasonal occasions.
 
 ---
 
-## 1. Project Title & Overview
-
-### Business Problem
-Commercial leadership and sales directors lacked a consolidated analytical platform to monitor revenue streams, order volumes, fulfillment logistics, and customer purchasing patterns across disparate product lines and geographic territories. Critical operational bottlenecks included:
-1. **Unmonitored Margin Leaks:** Inability to track high-volume versus high-margin product categories led to uncontrolled discounting and margin erosion.
-2. **Logistics Fulfillment Delays:** Commercial teams had no visibility into delivery lead times, obscuring shipping bottlenecks across key regional markets.
-3. **Temporal Blind Spots:** Lack of granular time intelligence obscured peak customer ordering hours and seasonal demand surges, resulting in misallocated ad spend and stockouts.
-
-### Solution & Scope
-To address these challenges, a robust analytical architecture was developed in **Microsoft Excel**:
-- **Automated ETL Pipeline:** Ingested and transformed multi-table transactional data (`customers.csv`, `orders.csv`, `products.csv`) via **Power Query**, cleansing data types, extracting order hour and calendar attributes, and validating data integrity.
-- **Relational Data Architecture:** Architected an enterprise **Star Schema** in **Power Pivot**, linking normalized dimensions (`dCustomer`, `dProduct`, `Calendar`) to the central transactional fact table (`fOrders`) with 1-to-many single-direction relationships.
-- **Executive Dashboard Interface:** Built a dark-accented executive reporting suite featuring calculated DAX measures and multi-dimensional slicers (Occasion, Month, Product Name, Order Hour, Category) for real-time commercial drill-downs.
+## Business Problem
+Commercial leadership and sales directors lacked consolidated visibility into revenue performance, order volume dynamics, and logistics delivery lead times across disparate product categories and regional cities. Unmonitored discounting eroded product margins, while logistical fulfillment delays damaged customer satisfaction across key regional markets. This created an urgent need for an interactive diagnostic dashboard to optimize commercial operations.
 
 ---
 
-## 2. Tech Stack
-
-| Technology | Role in Project |
-| :--- | :--- |
-| **Microsoft Excel & Power Pivot** | Relational Star Schema data modeling, multi-table relationships, Pivot Charts, and executive dashboard interface design. |
-| **DAX (Data Analysis Expressions)** | Authoring business-critical measures (`Total Revenue`, `Avg Customer Spend`, `Average Delivery Days`, and occasion revenue share). |
-| **Power Query (M Engine)** | Automated ETL ingestion, schema standardization, date/time extraction, and dimension table normalization. |
-| **Relational Data Modeling** | Enterprise Star Schema architecture connecting transactional facts (`fOrders`) to dimension tables (`dCustomer`, `dProduct`, `Calendar`). |
+## Solution
+Automated multi-table transactional data ingestion (`customers`, `orders`, `products`) via **Power Query**, cleansing data types and extracting temporal dimensions. Architected an enterprise **Star Schema** in **Power Pivot** linking dimension tables (`dCustomer`, `dProduct`, `Calendar`) to the central fact table (`fOrders`), and authored calculated **DAX** measures to build an interactive executive dashboard with multi-dimensional slicers.
 
 ---
 
-## 3. Dashboard Preview / Project Visuals
+## Dashboard Preview
 
-### Executive Revenue & Operational Dashboard
-Comprehensive executive interface tracking \$3.52M in revenue, 1,000 orders, average customer spend (\$3,521), delivery lead times (5.53 days), monthly trends, category breakdown, top purchasing cities, peak ordering hours, and occasion-based sales.
-
+### 1. Executive Revenue & Operations Dashboard
 ![Executive Revenue Dashboard](images/01_revenue_dashboard_overview.png)
+* **What it shows:** Executive KPIs, monthly revenue trajectories, category revenue breakdowns, top purchasing cities, peak ordering hours, and occasion-based sales performance.
+* **Business Value:** Delivers a single source of truth for commercial directors to track revenue velocity, spot seasonal demand shifts, and audit fulfillment lead times across regional markets.
 
 ---
 
-### Data Model Architecture (Star Schema)
-Robust dimensional model implemented in Power Pivot with 1-to-many single-direction relationships connecting normalized dimensions (`dCustomer`, `dProduct`, `Calendar`) to the central fact table (`fOrders`).
-
-![Star Schema Data Model](images/02_data_model_star_schema.png)
-
----
-
-## 4. Key Insights
-
-* **\$3.52M Gross Revenue Across 1,000 Orders (\$3,521 Average Order Value):**
-  The commercial portfolio generated **\$3,520,984** across exactly **1,000 fulfilled orders**, yielding an Average Customer Spend of **\$3,521**. Revenue concentration is heavily anchored by the **"Colors"** category (**\$1,020,000**, ~29% of gross revenue), followed by **Soft Toys (\$740,000)** and **Sweets (\$730,000)**. Conversely, categories such as "Plants" (\$210K) and "Mugs" (\$200K) exhibit low volume and require strategic cross-merchandising.
-
-* **Pronounced March Demand Surge & Occasion-Centric Spend:**
-  Revenue exhibits extreme seasonality: a massive peak in **March (~$720,000)**, followed by secondary demand waves in **August (~$500,000)** and **November (~$450,000)**, while the April–July post-holiday period experiences a prolonged lull (~$150,000/month). By consumer occasion, **Anniversary celebrations (\$680,000)** and **Raksha Bandhan (\$650,000)** represent the highest grossing seasonal drivers.
-
-* **Dual Daily Ordering Peaks & Logistics Fulfillment Lead Time (5.53 Days):**
-  Customer order placement concentrates heavily around two distinct daily intervals: an evening surge between **19:00–20:00 (7 PM–8 PM, ~$185,000)** and an early morning peak at **6:00 AM (~$180,000)**. Tier-2 regional cities dominate purchasing volume, led by **Bareilly, Ghaziabad, and Bhilai** (~70–75 orders each). Fulfillment logistics average **5.53 calendar days** from order placement to customer delivery.
+### 2. Star Schema Data Architecture
+![Star Schema Data Architecture](images/02_data_model_star_schema.png)
+* **What it shows:** A normalized relational data model in Power Pivot with 1-to-many single-direction relationships connecting customer, product, and calendar dimensions to order transactions.
+* **Business Value:** Eliminates data redundancy, enables scalable multi-dimensional cross-filtering, and ensures consistent DAX metric calculation without performance lag.
 
 ---
 
-## 5. Business Recommendations
+## Key Insights
 
-1. **Synchronize Marketing & Promotional Ad Spend with Peak Daily Windows:**
-   - Concentrate digital push notifications, flash promotions, and paid ad spend during the two peak buying windows (**6:00 AM** and **7:00–8:00 PM**) to maximize conversion rates and return on ad spend (ROAS).
-   - Ramp up seasonal marketing and inventory positioning 3–4 weeks prior to March and August to fully capitalize on Anniversary and Raksha Bandhan surges.
+* **Top-Line Revenue Concentration in Core Categories:**
+  * **Finding:** Three product categories generate the vast majority of gross revenue, while others lag behind.
+  * **Evidence:** Total revenue reached **\$3,520,984** across 1,000 orders (**\$3,521 AOV**), with **"Colors" (\$1.02M)**, **Soft Toys (\$740K)**, and **Sweets (\$730K)** driving ~71% of revenue.
+  * **Business Meaning:** Commercial margins depend heavily on three core lines; underperforming categories like Plants (\$210K) need strategic cross-selling.
 
-2. **Bundle Core High-Volume Categories with Margin Laggards:**
-   - Create curated gift hampers combining top sellers ("Colors", "Soft Toys", "Sweets") with underperforming product lines ("Plants", "Mugs") to lift average basket size and eliminate slow-moving inventory.
+* **Severe Demand Seasonality & Occasion Spikes:**
+  * **Finding:** Consumer purchasing surges heavily around specific celebratory occasions and calendar quarters.
+  * **Evidence:** Revenue peaked dramatically in **March (~$720K)**, driven by **Anniversary (\$680K)** and **Raksha Bandhan (\$650K)** occasions, followed by a mid-year lull (~$150K/month).
+  * **Business Meaning:** Cash flow and marketing returns are occasion-dependent, requiring proactive inventory stockpiling and seasonal campaign timing.
 
-3. **Optimize Logistics Routing in Top Regional Cities:**
-   - Establish dedicated fulfillment corridors and local carrier partnerships in top-volume regional hubs (**Bareilly, Ghaziabad, Bhilai**) to compress the 5.53-day delivery window to under 4 days, minimizing transit cancellations.
+* **Dual Daily Order Windows & Logistics Delivery Lead Time:**
+  * **Finding:** Customer buying velocity concentrates in two daily hours, with fulfillment averaging over 5 days.
+  * **Evidence:** Order volume spikes at **6:00 AM (~$180K)** and **7:00–8:00 PM (~$185K)**, while regional logistics average **5.53 days** across top cities (**Bareilly, Ghaziabad, Bhilai**).
+  * **Business Meaning:** Digital ad spend should target high-intent hours, while regional logistics corridors need optimization to shorten delivery cycles.
 
 ---
 
-## 6. Interactive Dashboard & Model Access
+## Business Recommendations
+
+* **Synchronize Ad Spend with Dual Daily Order Windows:**
+  * **Finding:** Customers consistently place orders during early mornings (6 AM) and evenings (7–8 PM).
+  * **Suggested Action:** Schedule digital ad campaigns and promotional push notifications to fire during these peak buying windows.
+  * **Expected Benefit:** Maximizes ad spend conversion rates and drives higher immediate transaction volume at lower customer acquisition cost.
+
+* **Curate Festive Gift Bundles for Slower Categories:**
+  * **Finding:** Categories like Plants (\$210K) and Mugs (\$200K) underperform during major seasonal occasions.
+  * **Suggested Action:** Bundle slower-moving items with high-velocity bestsellers ("Colors" and "Sweets") into themed gift sets for Anniversary and Raksha Bandhan promotions.
+  * **Expected Benefit:** Clears slow inventory, lifts Average Order Value, and broadens product category adoption.
+
+* **Optimize Regional Logistics Corridors in Top Volume Hubs:**
+  * **Finding:** Orders in top purchasing hubs (Bareilly, Ghaziabad, Bhilai) average 5.53 days in fulfillment transit.
+  * **Suggested Action:** Partner with regional fulfillment carriers and establish dedicated delivery corridors for the top 3 volume cities.
+  * **Expected Benefit:** Compresses average delivery lead time below 4 days, reducing transit cancellations and improving customer review ratings.
+
+---
+
+## Interactive Dashboard & Model Access
 
 The complete data model and interactive dashboard are available for download and exploration:
 
